@@ -7,20 +7,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-const allowedOrigins = [
-  "https://agency-roan-beta.vercel.app",
-  "http://localhost:5173"
-];
-
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
+    origin: '*' // Allow all origins strictly
 }));
 
 app.use(express.json());
