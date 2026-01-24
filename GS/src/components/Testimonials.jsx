@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star, MessageSquarePlus, User } from 'lucide-react';
+import { API_URL } from '../config';
 
 const initialReviews = [
     {
@@ -37,7 +38,7 @@ const Testimonials = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const res = await fetch('http://localhost:5000/api/reviews');
+                const res = await fetch(`${API_URL}/reviews`);
                 if (res.ok) {
                     const data = await res.json();
                     if (data.length > 0) {
@@ -64,7 +65,7 @@ const Testimonials = () => {
         setIsSubmitting(true);
 
         try {
-            const res = await fetch('http://localhost:5000/api/reviews', {
+            const res = await fetch(`${API_URL}/reviews`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)

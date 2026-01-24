@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Send } from 'lucide-react';
+import { API_URL } from '../config';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', phone: '', message: '' });
@@ -23,7 +24,7 @@ const Contact = () => {
                 details: formData.message
             };
 
-            const res = await fetch('http://localhost:5000/api/contact', {
+            const res = await fetch(`${API_URL}/contact`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Smartphone, MapPin, Phone, Facebook, Youtube, Star } from 'lucide-react';
+import { API_URL } from '../config';
 
 const services = [
     {
@@ -47,7 +48,10 @@ const Services = () => {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const res = await fetch('http://localhost:5000/api/services');
+
+
+                // ... (in component)
+                const res = await fetch(`${API_URL}/services`);
                 if (res.ok) {
                     const data = await res.json();
                     if (data.length > 0) {

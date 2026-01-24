@@ -7,7 +7,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: '*' }));
+app.use(cors({
+    origin: '*',
+
+}));
 app.use(express.json());
 
 // Database Connection

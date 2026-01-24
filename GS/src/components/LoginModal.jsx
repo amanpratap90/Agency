@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Lock, User, Key, ShieldCheck, RefreshCw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 const LoginModal = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     const checkInitialization = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/admin/check');
+            const res = await fetch(`${API_URL}/admin/check`);
             const data = await res.json();
             setMode(data.initialized ? 'login' : 'init');
         } catch (err) {
@@ -37,13 +38,13 @@ const LoginModal = ({ isOpen, onClose }) => {
             let body = {};
 
             if (mode === 'init') {
-                url = 'http://localhost:5000/api/admin/init';
+                url = `${API_URL}/admin/init`;
                 body = { username: formData.username, secretKey: formData.secretKey };
             } else if (mode === 'login') {
-                url = 'http://localhost:5000/api/admin/login';
+                url = `${API_URL}/admin/login`;
                 body = { username: formData.username, secretKey: formData.secretKey };
             } else if (mode === 'reset') {
-                url = 'http://localhost:5000/api/admin/reset';
+                url = `${API_URL}/admin/reset`;
                 body = { username: formData.username, newSecretKey: formData.newSecretKey };
             }
 

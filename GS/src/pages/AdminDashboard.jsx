@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { LayoutDashboard, MessageSquare, Briefcase, Users, Plus, Trash2, Check, X, LogOut } from 'lucide-react';
+import { API_URL } from '../config';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('inquiries');
@@ -14,7 +15,8 @@ const AdminDashboard = () => {
 
     const navigate = useNavigate(); // Add hook
 
-    const API_URL = 'http://localhost:5000/api';
+    // const API_URL = 'http://localhost:5000/api'; // Removed hardcoded URL
+
 
     useEffect(() => {
         const isAuth = localStorage.getItem('isAdminAuthenticated');
