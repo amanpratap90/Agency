@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-    origin: '*',
-
+    origin: ['http://localhost:5173', 'https://agency-roan-beta.vercel.app', 'http://localhost:5000'],
+    credentials: true
 }));
 app.use(express.json());
 
