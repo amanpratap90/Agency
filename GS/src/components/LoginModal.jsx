@@ -70,7 +70,8 @@ const LoginModal = ({ isOpen, onClose }) => {
                 setError(data.message || 'Something went wrong');
             }
         } catch (err) {
-            setError('Network Error');
+            console.error(err);
+            setError(`Network Error connecting to: ${url}`);
         } finally {
             setLoading(false);
         }
