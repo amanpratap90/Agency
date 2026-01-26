@@ -33,12 +33,19 @@ app.use('/api/services', require('./routes/services'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/admin', require('./routes/admin'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/orders', require('./routes/orders'));
+
+// Serve Uploads Static Folder
+app.use('/uploads', express.static('uploads'));
 
 // Fallback for missing /api in frontend config
 app.use('/services', require('./routes/services'));
 app.use('/reviews', require('./routes/reviews'));
 app.use('/contact', require('./routes/contact'));
 app.use('/admin', require('./routes/admin'));
+app.use('/auth', require('./routes/auth'));
+app.use('/orders', require('./routes/orders'));
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

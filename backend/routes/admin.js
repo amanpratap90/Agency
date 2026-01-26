@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Admin = require('../models/Admin');
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET || 'secret_key_change_me';
 
 // GET /check - Check if admin exists (to show Init or Login screen)
 router.get('/check', async (req, res) => {
@@ -44,7 +46,12 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ message: "Invalid secret key" });
         }
 
-        res.json({ success: true, username: admin.username });
+        // Issue JWT for Admin
+        const payload = { user: { id: admin.id, role: 'admin', username: admin.username } };
+        jwt.sign(payload, JWT_SECRET, { expiresIn: '24h' }, (err, token) => {
+            if (err) throw err;
+            res.json({ success: true, username: admin.username, token });
+        });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

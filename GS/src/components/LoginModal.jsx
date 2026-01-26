@@ -63,6 +63,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                     setFormData({ username: '', secretKey: '', newSecretKey: '' });
                 } else {
                     localStorage.setItem('isAdminAuthenticated', 'true');
+                    if (data.token) localStorage.setItem('adminToken', data.token); // Store Admin Token separately
                     onClose();
                     navigate('/dashboard');
                 }

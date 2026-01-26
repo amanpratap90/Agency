@@ -18,7 +18,8 @@ router.post('/', async (req, res) => {
         title: req.body.title,
         description: req.body.description,
         icon: req.body.icon,
-        gradient: req.body.gradient
+        gradient: req.body.gradient,
+        subServices: req.body.subServices || []
     });
 
     try {

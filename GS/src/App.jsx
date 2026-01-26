@@ -10,33 +10,51 @@ import Contact from './components/Contact';
 import WhatsAppButton from './components/WhatsAppButton';
 import Testimonials from './components/Testimonials';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminOrders from './pages/AdminOrders';
+import PlaceOrder from './pages/PlaceOrder';
+import UserDashboard from './pages/UserDashboard';
 import LoginModal from './components/LoginModal'; // Import LoginModal
+import UserAuthModal from './components/Auth/UserAuthModal'; // Import User Auth Modal
+import { AuthProvider, useAuth } from './context/AuthContext';
 
 function App() {
     return (
-        <Router>
-            <AppContent />
-        </Router>
+        <AuthProvider>
+            <Router>
+                <AppContent />
+            </Router>
+        </AuthProvider>
     );
 }
 
 function AppContent() {
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); // Admin Login
+    const [isUserAuthModalOpen, setIsUserAuthModalOpen] = useState(false); // User Login
 
     return (
         <>
             <Routes>
                 <Route path="/dashboard" element={<AdminDashboard />} />
-                <Route path="/" element={<MainLayout openLogin={() => setIsLoginModalOpen(true)} />} />
+                <Route path="/dashboard/orders" element={<AdminOrders />} />
+                <Route path="/my-account" element={<UserDashboard />} />
+                <Route path="/place-order" element={<PlaceOrder />} />
+                <Route path="/" element={
+                    <MainLayout
+                        openLogin={() => setIsLoginModalOpen(true)}
+                        openUserAuth={() => setIsUserAuthModalOpen(true)}
+                    />
+                } />
             </Routes>
             <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
+            <UserAuthModal isOpen={isUserAuthModalOpen} onClose={() => setIsUserAuthModalOpen(false)} />
         </>
     );
 }
 
-function MainLayout({ openLogin }) {
+function MainLayout({ openLogin, openUserAuth }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [footerClicks, setFooterClicks] = useState(0);
+    const { user } = useAuth(); // Access user state
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
     const closeMenu = () => setIsMenuOpen(false);
@@ -68,7 +86,14 @@ function MainLayout({ openLogin }) {
                         <a href="#services" className="hover:text-white transition-colors">Services</a>
                         <a href="#testimonials" className="hover:text-white transition-colors">Reviews</a>
                         <a href="#about" className="hover:text-white transition-colors">About</a>
-                        <a href="#contact" className="px-4 py-2 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-colors">Contact</a>
+                        {user ? (
+                            <div className="flex items-center gap-4">
+                                <span className="text-neutral-400">Hello, <span className="text-white font-bold">{user.username}</span></span>
+                                <a href="/my-account" className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-orange-500/20 transition-all">My Account</a>
+                            </div>
+                        ) : (
+                            <a href="#contact" className="px-4 py-2 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-colors">Contact</a>
+                        )}
                     </nav>
 
                     {/* Mobile Menu Button */}
@@ -91,7 +116,11 @@ function MainLayout({ openLogin }) {
                                     <a href="#services" onClick={closeMenu} className="text-white hover:text-purple-400 transition-colors">Services</a>
                                     <a href="#testimonials" onClick={closeMenu} className="text-white hover:text-purple-400 transition-colors">Reviews</a>
                                     <a href="#about" onClick={closeMenu} className="text-white hover:text-purple-400 transition-colors">About</a>
-                                    <a href="#contact" onClick={closeMenu} className="text-white hover:text-purple-400 transition-colors">Contact</a>
+                                    {user ? (
+                                        <a href="/my-account" onClick={closeMenu} className="text-orange-500 hover:text-orange-400 transition-colors">My Account</a>
+                                    ) : (
+                                        <a href="#contact" onClick={closeMenu} className="text-white hover:text-purple-400 transition-colors">Contact</a>
+                                    )}
                                 </nav>
                             </motion.div>
                         )}
@@ -99,7 +128,7 @@ function MainLayout({ openLogin }) {
                 </header>
 
                 <Hero />
-                <Services />
+                <Services openUserAuth={openUserAuth} />
                 <About />
                 <Testimonials />
                 <Contact />
