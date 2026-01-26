@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
     origin: '*' // Allow all origins strictly
 }));
+
 app.use(express.json());
 
 // Database Connection
