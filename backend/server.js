@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,6 +14,13 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+// Ensure uploads directory exists
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+    console.log('Uploads directory created successfully');
+}
 
 // Database Connection
 console.log('Attempting to connect to MongoDB...');
