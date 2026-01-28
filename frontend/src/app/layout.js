@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata = {
   title: "GS Agency",
   description: "GS Promotion Company",
+  icons: {
+    icon: '/gs-logo.png',
+  },
 };
 
 export default function RootLayout({ children }) {
