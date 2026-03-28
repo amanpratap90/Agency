@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "GS Agency",
+  title: "GS Promotion Company",
   description: "GS Promotion Company",
   icons: {
     icon: '/gs-logo.png',
