@@ -35,7 +35,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Routes (Placeholder)
 app.get('/', (req, res) => {
-    res.send('GS Agency Backend is Running');
+    res.send('GS Promotion Company Backend is Running');
 });
 
 // Import Routes

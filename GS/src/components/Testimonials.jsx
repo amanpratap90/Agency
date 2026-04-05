@@ -9,7 +9,7 @@ const initialReviews = [
         name: "Rahul Sharma",
         role: "App Developer",
         rating: 5,
-        message: "GS Agency completely transformed our app launch. The keyword installs worked like magic, and we saw a 300% boost in organic traffic within a week!",
+        message: "GS Promotion Company completely transformed our app launch. The keyword installs worked like magic, and we saw a 300% boost in organic traffic within a week!",
         initials: "RS"
     },
     {
