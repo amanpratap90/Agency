@@ -18,7 +18,7 @@ const About = () => {
                         <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 via-blue-500/20 to-pink-500/20 animate-pulse" />
                         <img
                             src="/gs-about.png"
-                            alt="About GS Agency"
+                            alt="About GS Promotion Company"
                             className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]"
                         />
                     </div>
@@ -31,7 +31,7 @@ const About = () => {
                 >
                     <h2 className="text-4xl font-bold mb-6">About <span className="text-purple-400">Us</span></h2>
                     <p className="text-lg text-neutral-300 mb-6 leading-relaxed">
-                        Hello there! We are <strong className="text-white">GS Agency</strong>, a passionate and results-driven digital marketer team with a proven track record of success.
+                        Hello there! We are <strong className="text-white">GS Promotion Company</strong>, a passionate and results-driven digital marketer team with a proven track record of success.
                     </p>
                     <p className="text-neutral-400 mb-8 leading-relaxed">
                         With years of experience under our belt, our agency can promote your applications, businesses, social media accounts, and more. Our aim is to make projects successful through strategic and innovative marketing campaigns. If you deal with us, we run totally on quality works, affordable pricing, and commitments about our services.

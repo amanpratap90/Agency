@@ -104,7 +104,7 @@ export default function HomeClient() {
 
                 <footer className="mt-20 py-8 border-t border-white/5 text-center text-neutral-600 text-sm">
                     <span onClick={handleFooterClick} className="cursor-pointer select-none">
-                        © {new Date().getFullYear()} GS Agency All Custom Rights Reserved.
+                        © {new Date().getFullYear()} GS Promotion Company All Custom Rights Reserved.
                     </span>
                 </footer>
 
